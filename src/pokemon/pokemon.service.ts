@@ -1,6 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+
 import { isValidObjectId, Model } from 'mongoose';
 import { Pokemon } from './entities/pokemon.entity';
 import { InjectModel } from '@nestjs/mongoose';
@@ -73,8 +74,6 @@ export class PokemonService {
       this.handleExeptions(error)
     }
   }
-  
-  
   //remove
   async remove(id: string) {
     //const Pokemon = await this.findOne(id)
@@ -86,7 +85,6 @@ export class PokemonService {
       throw new BadRequestException(`Pokemon with ${id} not found`)
     return 
   }
-
   private handleExeptions(error: any){
     if (error.code === 11000){
       throw new BadRequestException(`Este dato ya existe en ${JSON.stringify(error.keyValue)}`)
