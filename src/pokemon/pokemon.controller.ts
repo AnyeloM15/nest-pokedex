@@ -3,6 +3,7 @@ import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
+import { Pokemon } from './entities/pokemon.entity';
 
 @Controller('pokemon')
 export class PokemonController {
@@ -12,13 +13,13 @@ export class PokemonController {
   @HttpCode(HttpStatus.CREATED)
   create(@Body() createPokemonDto: CreatePokemonDto) {
     return this.pokemonService.create(createPokemonDto);
-  }
+  } 
 
   @Get()
-  findAll() {
-    return this.pokemonService.findAll();
+  async findAll(): Promise<Pokemon[]> {
+    return this.pokemonService.findAll(); 
   }
-
+  
   @Get(':term')
   findOne(@Param('term') term: string) {
     return this.pokemonService.findOne( term );

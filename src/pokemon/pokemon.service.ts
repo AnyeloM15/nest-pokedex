@@ -14,7 +14,7 @@ export class PokemonService {
     @InjectModel( Pokemon.name )
     private readonly PokemonModel: Model<Pokemon>
   
-  ){}
+  ){} 
 
   async create(createPokemonDto: CreatePokemonDto) { 
 
@@ -27,10 +27,10 @@ export class PokemonService {
     }
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
-  }
-
+    async findAll(): Promise<Pokemon[]> {
+      return this.PokemonModel.find().exec(); 
+    }
+    
   async findOne(term: string) {
     let pokemon: Pokemon | null = null;
 
