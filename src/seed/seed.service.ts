@@ -20,7 +20,7 @@ export class SeedService {
 
 
   async executeSeed(){
-    //await this.PokemonModel.deleteMany({}) //! delete * from pokemons 
+    await this.PokemonModel.deleteMany({}) //! delete * from pokemons 
     const data= await this.http.get<PokemonResponse>('https://pokeapi.co/api/v2/pokemon?limit=650')
     // const insertPromisesArray:any = [];
     //! Se define una variable donde los parametros a recibir son los mismos que estamos recolectando de la api y los guardamos en una array
